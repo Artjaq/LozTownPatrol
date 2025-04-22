@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dub Sound System - Accueil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Loz Town<span>Patrol</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="events.html">Événements</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vibration Massive</h1>
+            <p>Bienvenue dans notre univers sonore. Des basses profondes et des rythmes authentiques pour faire vibrer vos soirées.</p>
+            <a href="events.html" class="btn">Prochains événements</a>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="events">
+        <div class="container">
+            <h2 class="section-title">Prochains événements</h2>
+            <div class="event-card">
+                <div class="event-date">17 Avril 2025</div>
+                <div class="event-info">
+                    <h3>JeuDreadies - La Bille Espace Culturel</h3>
+                    <p>Une soirée exceptionnelle avec notre sound system complet et des invités de marque. Préparez-vous à des vibrations intenses !</p>
+                    <p><strong>Lieu:</strong> Chemin des condémines 4, 1315 La Sarraz</p>
+                    <a href="events.html" class="btn">Plus d'infos</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-date">28 Mai 2025</div>
+                <div class="event-info">
+                    <h3>Espace autogéré</h3>
+                    <p>Notre collaboration avec d'autres crews locaux pour une expérience sonore unique.</p>
+                    <p><strong>Lausanne</p>
+                    <a href="events.html" class="btn">Plus d'infos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Slider/Carousel -->
+    <section class="slider-container">
+        <div class="container">
+            <h2 class="section-title">Nos soirées en images</h2>
+            <div class="slider">
+                <div class="slides">
+
+                </div>
+                <div class="slider-nav">
+                    <button class="active" data-index="0"></button>
+                    <button data-index="1"></button>
+                    <button data-index="2"></button>
+                    <button data-index="3"></button>
+                </div>
+                <div class="slide-arrows">
+                    <button class="arrow prev">&lt;</button>
+                    <button class="arrow next">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-soundcloud"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 DUB SYSTEM. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+</body>
+</html>
