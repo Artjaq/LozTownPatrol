@@ -1,98 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dub Sound System - Accueil</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loz Town Patrol — Accueil</title>
+
+  <!-- mêmes typos que contact.html -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <a href="index.html" class="logo">Loz Town<span>Patrol</span></a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="events.html">Événements</a></li>
-                    <li><a href="about.html">À propos</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+
+
+
+  <!-- Header -->
+  <header class="header-glow">
+    <div class="container nav">
+      <a href="index.html" class="logo">Loz Town<span>Patrol</span></a>
+      <nav>
+        <ul>
+          <li><a class="active" href="index.html">Accueil</a></li>
+          <li><a href="events.html">Événements</a></li>
+          <li><a href="about.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero hero-designed">
+    <div class="grain"></div>
+    <div class="container hero-inner hero-grid">
+      <div class="hero-copy">
+        <div class="hero-badge">Dub / Reggae</div>
+        <h1 class="hero-title">
+          Vibration <span class="grad-rasta">Massive</span>
+        </h1>
+        <p class="hero-sub">
+          Des basses profondes & des rythmes authentiques — dubwise selection, strictly roots.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="events.html" class="btn btn-solid">Prochains événements</a>
+          <a href="contact.html" class="btn btn-ghost">Booking</a>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Vibration Massive</h1>
-            <p>Bienvenue dans notre univers sonore. Des basses profondes et des rythmes authentiques pour faire vibrer vos soirées.</p>
-            <a href="events.html" class="btn">Prochains événements</a>
+        <!-- “Line-up” tags défilants (horizontal scroll) -->
+        <div class="chips">
+          <span class="chip">Roots</span>
+          <span class="chip">Dub</span>
+          <span class="chip">Steppas</span>
+          <span class="chip">Heavy Bass</span>
+          <span class="chip">Sound System</span>
+          <span class="chip">Vinyl Set</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Upcoming Events -->
-    <section class="events">
-        <div class="container">
-            <h2 class="section-title">Prochains événements</h2>
-            <div class="event-card">
-                <div class="event-date">17 Avril 2025</div>
-                <div class="event-info">
-                    <h3>JeuDreadies - La Bille Espace Culturel</h3>
-                    <p>Une soirée exceptionnelle avec notre sound system complet et des invités de marque. Préparez-vous à des vibrations intenses !</p>
-                    <p><strong>Lieu:</strong> Chemin des condémines 4, 1315 La Sarraz</p>
-                    <a href="events.html" class="btn">Plus d'infos</a>
-                </div>
-            </div>
-            <div class="event-card">
-                <div class="event-date">28 Mai 2025</div>
-                <div class="event-info">
-                    <h3>Espace autogéré</h3>
-                    <p>Notre collaboration avec d'autres crews locaux pour une expérience sonore unique.</p>
-                    <p><strong>Lausanne</p>
-                    <a href="events.html" class="btn">Plus d'infos</a>
-                </div>
-            </div>
+      <!-- Vinyle animé -->
+      <div class="hero-visual">
+        <div class="vinyl">
+          <div class="label">
+            <span class="label-top">Loz Town Patrol</span>
+            <span class="label-mid">45 RPM</span>
+            <span class="label-bot">Dubwise</span>
+          </div>
+          <div class="vinyl-grooves"></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Image Slider/Carousel -->
-    <section class="slider-container">
-        <div class="container">
-            <h2 class="section-title">Nos soirées en images</h2>
-            <div class="slider">
-                <div class="slides">
+  <!-- Événements (flyers) -->
+  <section class="events events-designed">
+    <div class="container">
+      <h2 class="section-title">Prochains événements</h2>
 
-                </div>
-                <div class="slider-nav">
-                    <button class="active" data-index="0"></button>
-                    <button data-index="1"></button>
-                    <button data-index="2"></button>
-                    <button data-index="3"></button>
-                </div>
-                <div class="slide-arrows">
-                    <button class="arrow prev">&lt;</button>
-                    <button class="arrow next">&gt;</button>
-                </div>
-            </div>
+      <div class="event-list flyers">
+        <article class="card event flyer">
+          <div class="flyer-edge"></div>
+          <div class="event-head">
+            <div class="event-meta">17 avril 2025 — La Sarraz</div>
+            <h3 class="event-title">JeuDreadies — La Bille Espace Culturel</h3>
+          </div>
+          <div class="sep"></div>
+          <p>Sound system complet + guests. Préparez-vous à des vibrations intenses.</p>
+          <p class="muted"><strong>Lieu :</strong> Chemin des Condémines 4, 1315 La Sarraz</p>
+          <div class="event-actions">
+            <a class="btn btn-solid" href="events.html">Plus d'infos</a>
+          </div>
+        </article>
+
+        <article class="card event flyer alt">
+          <div class="flyer-edge"></div>
+          <div class="event-head">
+            <div class="event-meta">28 mai 2025 — Lausanne</div>
+            <h3 class="event-title">Espace autogéré</h3>
+          </div>
+          <div class="sep"></div>
+          <p>Session locale en collaboration avec d'autres crews — strictly good vibes.</p>
+          <p class="muted"><strong>Ville :</strong> Lausanne</p>
+          <div class="event-actions">
+            <a class="btn btn-solid" href="events.html">Plus d'infos</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slider -->
+  <section class="slider-wrap slider-designed">
+    <div class="container">
+      <h2 class="section-title">Nos soirées en images</h2>
+
+      <div class="slider">
+        <div class="slides">
+          <!-- Remplace par tes fichiers locaux -->
+          <div class="slide" style="background-image:url('https://via.placeholder.com/1600x900');"></div>
+          <div class="slide" style="background-image:url('https://via.placeholder.com/1600x900');"></div>
+          <div class="slide" style="background-image:url('https://via.placeholder.com/1600x900');"></div>
+          <div class="slide" style="background-image:url('https://via.placeholder.com/1600x900');"></div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-soundcloud"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">&copy; 2025 DUB SYSTEM. Tous droits réservés.</p>
+        <div class="slider-nav">
+          <button class="active" data-index="0"></button>
+          <button data-index="1"></button>
+          <button data-index="2"></button>
+          <button data-index="3"></button>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
-    <script type="module" src="firebase-config.js"></script>
+        <div class="slide-arrows">
+          <button class="arrow prev" aria-label="Précédent">&lt;</button>
+          <button class="arrow next" aria-label="Suivant">&gt;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div class="social" style="justify-content:center; margin-bottom:8px;">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-soundcloud"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>&copy; 2025 Loz Town Patrol — Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
