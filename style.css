@@ -550,3 +550,64 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
     grid-column: auto;
   }
 }
+
+/* =========================
+   CONTACT — colonne gauche
+   ========================= */
+.contact .card:first-child{
+  padding: 28px 26px;               /* + padding interne */
+  display: flex;
+  flex-direction: column;
+  gap: 26px;                        /* espace entre les blocs (titre, infos, réseaux) */
+}
+
+.contact .card:first-child h2{
+  margin-bottom: 8px;
+}
+
+.info-list{ gap: 20px; }            /* + espace entre chaque info */
+.info{ line-height: 1.6; }
+
+.social{ margin-top: 12px; gap: 16px; }
+.social a{ font-size: 22px; }       /* icônes légèrement plus grandes */
+
+/* ---------- About page ---------- */
+.about{ padding: 40px 0 64px; }
+.about .card p{
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-dim);
+}
+/* Alignement des barres (sep) sur contact */
+.contact .card .sep{
+  height: 2px;
+  margin: 6px 0 18px;
+  background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+  border-radius: 2px;
+  /* force la barre à s'aligner avec la grille */
+  margin-left: -4px;
+  margin-right: -4px;
+}
+
+/* 1) Pad des cartes piloté par une variable */
+.card{
+  --card-pad: var(--pad);               /* défaut */
+  padding: var(--card-pad);
+}
+
+/* 2) Carte gauche : même layout mais on déclare son pad */
+.contact .card:first-child{
+  --card-pad: 26px;                     /* correspond à tes 28px 26px (on garde 26px horizontal) */
+  padding: 28px var(--card-pad);
+}
+
+/* 3) Barre "sep" qui s'aligne pile avec la grille (full-bleed dans la card) */
+.contact .card .sep{
+  height: 2px;
+  margin: 6px 0 18px;
+  background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
+  border-radius: 2px;
+  /* déborde des deux côtés exactement de la valeur du padding */
+  margin-left: calc(var(--card-pad) * -1);
+  margin-right: calc(var(--card-pad) * -1);
+}
