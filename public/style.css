@@ -285,11 +285,26 @@ footer{ border-top:1px solid var(--line); padding:18px 0; background:#0b0b0b; }
   border-radius:50%;
   background:#e9e2c0;
   border:1px solid #111;
-  display:grid; place-items:center; text-align:center;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align:center;
   color:#0b0b0b; font-family: var(--mono);
-  font-size:11px; font-weight:700; letter-spacing:.7px;
-  padding-top:7px;
-  padding-bottom: 7px;
+  font-size: clamp(6px, 1.4vw, 11px);
+  font-weight:700; letter-spacing:.05em;
+  padding: clamp(3px, 0.8vw, 7px) clamp(3px, 0.6vw, 8px);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.vinyl .label .label-top,
+.vinyl .label .label-mid,
+.vinyl .label .label-bot{
+  display: block;
+  max-width: 100%;
+  line-height: 1.15;
 }
 
 .vinyl-sheen{
@@ -405,6 +420,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .hero-sub{ font-size:14px; }
   .hero-ctas{ flex-direction: column; align-items: stretch; gap:10px; }
   .vinyl-lg{ width: clamp(150px, 48vw, 200px); }
+  .vinyl .label{
+    font-size: 6px;
+    padding: 3px 4px;
+    letter-spacing: .02em;
+  }
   .chips-show{ gap: 8px; }
   .chip{ font-size:10px; padding: 5px 9px; }
 
@@ -460,6 +480,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .hero-ctas{ justify-content:center; }
   .hero-visual{ margin-top: 8px; }
   .vinyl-lg{ width: clamp(180px, 52vw, 260px); }
+  .vinyl .label{
+    font-size: 8px;
+    padding: 5px 6px;
+    letter-spacing: .03em;
+  }
 
   .event-list{ grid-template-columns: 1fr; }
   .slider-nav button{ width:12px; height:12px; }
@@ -488,8 +513,25 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   }
   .hero-title{ font-size: clamp(40px, 7.2vw, 56px); }
   .vinyl-lg{ width: clamp(220px, 32vw, 300px); }
+  .vinyl .label{
+    inset: 34% 34%;
+    font-size: 7px;
+    padding: 4px 5px;
+    letter-spacing: .03em;
+  }
   .event-list{ grid-template-columns: 1fr 1fr; }
 }
+
+/* --- 1025px–1054px : label vinyl réduit pour tenir dans le cercle --- */
+@media (min-width: 1025px) and (max-width: 1054px){
+  .vinyl .label{
+    inset: 35% 35%;
+    font-size: 8px;
+    padding: 4px 5px;
+    letter-spacing: .03em;
+  }
+}
+
 
 /* --- Desktop large (≥1200px) --- */
 @media (min-width: 1200px){
