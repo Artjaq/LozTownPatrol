@@ -469,7 +469,9 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   .page-head h1{ font-size: clamp(22px, 6vw, 28px); }
   .about, .contact, .contact-section, .events-archive{ padding-top: 20px; padding-bottom: 40px; }
   .card{ padding: 16px; }
-  .contact .card:first-child{ padding: 20px 16px; }
+  .contact .card,
+  .contact .card-contact-aside,
+  .contact .card-contact-form{ padding: 20px 16px; --card-pad: 16px; }
   .info-list{ gap: 16px; }
   .btn{ min-height: 44px; padding: 14px 20px; }
 }
@@ -612,10 +614,15 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   align-items: start;
 }
 
-/* cartes au même niveau visuel */
+/* cartes contact : même padding pour que les deux .sep soient alignés */
 .contact .card,
+.contact .card-contact-aside,
+.contact .card-contact-form,
 .contact-section .card{
   height: 100%;
+  --card-pad: 26px;
+  padding: 28px var(--card-pad);
+  overflow: visible; /* pour que la .sep en full-bleed ne soit pas coupée */
 }
 
 /* formulaire en 2 colonnes sur desktop */
@@ -655,7 +662,6 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
    CONTACT — colonne gauche
    ========================= */
 .contact .card:first-child{
-  padding: 28px 26px;               /* + padding interne */
   display: flex;
   flex-direction: column;
   gap: 26px;                        /* espace entre les blocs (titre, infos, réseaux) */
@@ -678,38 +684,84 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
   line-height: 1.7;
   color: var(--ink-dim);
 }
-/* Alignement des barres (sep) sur contact */
-.contact .card .sep{
-  height: 2px;
-  margin: 6px 0 18px;
-  background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
-  border-radius: 2px;
-  /* force la barre à s'aligner avec la grille */
-  margin-left: -4px;
-  margin-right: -4px;
-}
-
-/* 1) Pad des cartes piloté par une variable */
+/* 1) Pad des cartes piloté par une variable (défaut) */
 .card{
   --card-pad: var(--pad);               /* défaut */
   padding: var(--card-pad);
 }
 
-/* 2) Carte gauche : même layout mais on déclare son pad */
-.contact .card:first-child{
-  --card-pad: 26px;                     /* correspond à tes 28px 26px (on garde 26px horizontal) */
-  padding: 28px var(--card-pad);
-}
-
-/* 3) Barre "sep" qui s'aligne pile avec la grille (full-bleed dans la card) */
-.contact .card .sep{
+/* 2) Barres .sep-contact : full-bleed dans les deux cards (aside + formulaire) */
+.contact .card .sep-contact,
+.contact .card-contact-aside .sep-contact,
+.contact .card-contact-form .sep-contact,
+.contact-section .card .sep{
   height: 2px;
   margin: 6px 0 18px;
   background: linear-gradient(90deg, var(--green), var(--gold), var(--red));
   border-radius: 2px;
-  /* déborde des deux côtés exactement de la valeur du padding */
+  /* largeur explicite + marges négatives = barre d’un bord à l’autre de la card */
+  width: calc(100% + 2 * var(--card-pad));
   margin-left: calc(var(--card-pad) * -1);
   margin-right: calc(var(--card-pad) * -1);
+  box-sizing: content-box;
+}
+
+/* ---------- Page « En construction » ---------- */
+.page-construction {
+  padding: clamp(40px, 8vw, 80px) 0 clamp(60px, 10vw, 100px);
+  text-align: center;
+}
+.page-construction .construction-card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 44px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #101010;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.page-construction .construction-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(46, 125, 50, 0.15), rgba(230, 180, 34, 0.1));
+  color: var(--gold);
+  font-size: 28px;
+}
+.page-construction .construction-title {
+  margin: 0 0 12px;
+  font-size: clamp(22px, 4vw, 28px);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink);
+}
+.page-construction .construction-strip {
+  height: 6px;
+  margin: 0 auto 20px;
+  border-radius: 4px;
+  max-width: 200px;
+  background: linear-gradient(90deg, var(--green) 0 33.33%, var(--gold) 33.33% 66.66%, var(--red) 66.66% 100%);
+  opacity: 0.9;
+}
+.page-construction .construction-text {
+  margin: 0 0 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+.page-construction .construction-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+@media (max-width: 480px) {
+  .page-construction .construction-ctas { flex-direction: column; align-items: stretch; }
 }
 
 /* ---------- Mobile : overflow & hauteur ---------- */
