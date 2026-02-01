@@ -1,4 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Menu mobile (hamburger) ---
+    const header = document.getElementById('main-header');
+    const navToggle = document.querySelector('.nav-toggle');
+    if (header && navToggle) {
+        navToggle.addEventListener('click', () => {
+            const open = header.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', open);
+            navToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+            document.body.style.overflow = open ? 'hidden' : '';
+        });
+        // Fermer le menu au clic sur un lien (navigation)
+        header.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                header.classList.remove('nav-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'Ouvrir le menu');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
     const slider = document.querySelector('.slider');
     const slides = slider?.querySelector('.slides');
     const sliderNav = slider?.querySelector('.slider-nav');

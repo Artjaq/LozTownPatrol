@@ -11,9 +11,13 @@
 </head>
 <body>
 
-  <header>
+  <header id="main-header">
     <div class="container nav">
       <a href="index.html" class="logo">Loz Town<span>Patrol</span></a>
+      <button type="button" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="icon-open" aria-hidden="true"><i class="fa-solid fa-bars"></i></span>
+        <span class="icon-close" aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+      </button>
       <nav>
         <ul>
           <li><a href="index.html">Accueil</a></li>
@@ -118,6 +122,7 @@
     </div>
   </footer>
 
+  <script src="script.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('contactForm');
