@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Loz Town Patrol — Événements</title>
+  <title>Loz Town Patrol — Événement</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,24 +29,13 @@
     </div>
   </header>
 
-  <section class="page-head">
-    <div class="container">
-      <h1>Événements passés</h1>
-      <p>Toutes nos sessions & soirées</p>
+  <!-- Contenu injecté dynamiquement par event-detail.js -->
+  <main id="event-detail-root">
+    <div class="load-state">
+      <div class="load-spinner"></div>
+      <p>Chargement…</p>
     </div>
-  </section>
-
-  <section class="events-archive">
-    <div class="container">
-      <div id="events-container">
-        <!-- Injecté dynamiquement par js/events.js -->
-        <div class="load-state">
-          <div class="load-spinner"></div>
-          <p>Chargement des événements…</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <footer>
     <div class="container foot">
@@ -61,6 +50,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script type="module" src="js/events.js"></script>
+  <script type="module" src="js/event-detail.js"></script>
 </body>
 </html>
