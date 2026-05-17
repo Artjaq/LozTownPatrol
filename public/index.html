@@ -75,34 +75,8 @@
     <div class="container">
       <h2 class="section-title">Prochains événements</h2>
 
-      <div class="event-list flyers">
-        <article class="card event flyer">
-          <div class="flyer-edge"></div>
-          <div class="event-head">
-            <div class="event-meta">17 avril 2025 — La Sarraz</div>
-            <h3 class="event-title">JeuDreadies — La Bille Espace Culturel</h3>
-          </div>
-          <div class="sep"></div>
-          <p>Sound system complet + guests. Préparez-vous à des vibrations intenses.</p>
-          <p class="muted"><strong>Lieu :</strong> Chemin des Condémines 4, 1315 La Sarraz</p>
-          <div class="event-actions">
-            <a class="btn btn-solid" href="events.html">Plus d'infos</a>
-          </div>
-        </article>
-
-        <article class="card event flyer alt">
-          <div class="flyer-edge"></div>
-          <div class="event-head">
-            <div class="event-meta">28 mai 2025 — Lausanne</div>
-            <h3 class="event-title">Espace autogéré</h3>
-          </div>
-          <div class="sep"></div>
-          <p>Session locale en collaboration avec d'autres crews — strictly good vibes.</p>
-          <p class="muted"><strong>Ville :</strong> Lausanne</p>
-          <div class="event-actions">
-            <a class="btn btn-solid" href="events.html">Plus d'infos</a>
-          </div>
-        </article>
+      <div id="home-events-list" class="event-list flyers">
+        <!-- Injecté dynamiquement par js/home-events.js -->
       </div>
     </div>
   </section>
@@ -149,5 +123,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script type="module" src="js/home-events.js"></script>
 </body>
 </html>

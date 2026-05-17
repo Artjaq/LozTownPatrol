@@ -170,10 +170,55 @@ async function loadEvent() {
     }
 
     root.innerHTML = renderDetail(snap.id, snap.data());
+    initLightbox();
   } catch (err) {
     console.error('[event-detail.js]', err);
     showError(err.message);
   }
+}
+
+// ── Lightbox ───────────────────────────────────────────────────
+
+function initLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  const img   = lightbox.querySelector('.lightbox-img');
+  const close = lightbox.querySelector('.lightbox-close');
+
+  function open(src, alt) {
+    img.src = src;
+    img.alt = alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // Clic sur une photo
+  document.querySelectorAll('.photo-item').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      open(link.href, link.querySelector('img')?.alt || '');
+    });
+  });
+
+  // Fermeture : bouton X
+  close.addEventListener('click', closeLightbox);
+
+  // Fermeture : clic sur le fond (overlay), pas sur l'image
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Fermeture : touche Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
 }
 
 loadEvent();
