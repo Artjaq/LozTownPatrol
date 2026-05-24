@@ -1,6 +1,21 @@
 # macOS
 .DS_Store
 **/.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode
+.idea
+*.swp
+
+# Eleventy
+_site
+
+# Netlify
+.netlify
+
+# Environnement
+.env.*
 
 # Logs
 logs

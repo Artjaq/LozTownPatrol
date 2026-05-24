@@ -1,0 +1,9 @@
+# Les redirections 301 (Firebase → Netlify) seront ajoutées en Phase 5
+# lors de la bascule DNS.
+
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "20"

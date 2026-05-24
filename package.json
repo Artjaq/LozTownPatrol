@@ -1,5 +1,13 @@
 {
-  "dependencies": {
-    "firebase": "^12.2.1"
+  "name": "loztownpatrol",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
   }
 }
