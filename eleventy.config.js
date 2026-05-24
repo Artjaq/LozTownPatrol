@@ -1,7 +1,11 @@
-// Phase 2 : ajouter les passthrough copy pour styles.css, scripts.js,
-// images/, uploads/ et admin/ une fois les templates portés.
+// Phase 2a : passthrough copy des assets statiques ajouté.
+// Phase 2b : passthrough copy pour uploads/ et admin/ à ajouter.
 
 export default function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("src/style.css");
+  eleventyConfig.addPassthroughCopy("src/script.js");
+  eleventyConfig.addPassthroughCopy("src/image");
+
   return {
     dir: {
       input: "src",

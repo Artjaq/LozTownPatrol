@@ -1,0 +1,116 @@
+---
+layout: base.njk
+titre: "Contact"
+page_active: contact
+permalink: /contact/
+header_glow: false
+footer_simple: true
+---
+{% block contenu %}
+
+<section class="page-head">
+  <div class="container">
+    <h1>  Contact</h1>
+    <p>Bookings, infos & collabs.</p>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="container grid">
+    <aside class="card card-contact-aside">
+      <h2>Restez connecté</h2>
+      <div class="sep sep-contact"></div>
+
+      <ul class="info-list">
+        <li class="info">
+          <span class="tag"><i class="fa-solid fa-envelope"></i></span>
+          <div>
+            <div class="label">Email</div>
+            <div class="muted">contact@loztownpatrol.ch</div>
+          </div>
+        </li>
+
+        <li class="info">
+          <span class="tag"><i class="fa-solid fa-phone"></i></span>
+          <div>
+            <div class="label">Téléphone</div>
+            <div class="muted">+41 XX XXX XX XX</div>
+          </div>
+        </li>
+
+        <li class="info">
+          <span class="tag"><i class="fa-solid fa-location-dot"></i></span>
+          <div>
+            <div class="label">Localisation</div>
+            <div class="muted">Lausanne, Suisse — dispo CH & France voisine</div>
+          </div>
+        </li>
+
+        <li class="info">
+          <span class="tag"><i class="fa-solid fa-music"></i></span>
+          <div>
+            <div class="label">Nos mix</div>
+            <div class="muted">Suivez-nous sur SoundCloud & YouTube</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="social">
+        <a href="{{ site.reseaux.facebook }}"><i class="fab fa-facebook"></i></a>
+        <a href="{{ site.reseaux.instagram }}"><i class="fab fa-instagram"></i></a>
+        <a href="{{ site.reseaux.soundcloud }}"><i class="fab fa-soundcloud"></i></a>
+        <a href="{{ site.reseaux.youtube }}"><i class="fab fa-youtube"></i></a>
+      </div>
+    </aside>
+
+    <div class="card card-contact-form">
+      <h2>Envoyez un message</h2>
+      <div class="sep sep-contact"></div>
+
+      <form id="contactForm" action="#" method="POST" class="form">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" name="name" required placeholder="Votre nom" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="Votre adresse email" />
+
+        <label for="phone">Téléphone (optionnel)</label>
+        <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone" />
+
+        <label for="subject">Sujet</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Choisissez un sujet</option>
+          <option value="booking">Réservation pour un événement</option>
+          <option value="info">Informations sur les événements</option>
+          <option value="collaboration">Proposition de collaboration</option>
+          <option value="other">Autre demande</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="Votre message ici..."></textarea>
+
+        <button type="submit" class="btn">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const ok = ['name','email','subject','message'].every(id => document.getElementById(id).value.trim() !== '');
+      if(ok){
+        alert('Merci pour votre message ! Nous vous recontactons vite.');
+        form.reset();
+      } else {
+        alert('Veuillez compléter les champs obligatoires.');
+      }
+    });
+  });
+</script>
+{% endblock %}

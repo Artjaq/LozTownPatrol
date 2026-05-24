@@ -1,0 +1,15 @@
+<footer>
+  <div class="container foot">
+    {% if not footer_simple %}
+    <div class="social" style="justify-content:center; margin-bottom:8px;">
+      <a href="{{ site.reseaux.facebook }}"><i class="fab fa-facebook"></i></a>
+      <a href="{{ site.reseaux.instagram }}"><i class="fab fa-instagram"></i></a>
+      <a href="{{ site.reseaux.soundcloud }}"><i class="fab fa-soundcloud"></i></a>
+      <a href="{{ site.reseaux.youtube }}"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; {{ site.annee_courante }} Loz Town Patrol — Tous droits réservés.</p>
+    {% else %}
+    <p>&copy; {{ site.annee_courante }} Loz Town Patrol — All rights reserved.</p>
+    {% endif %}
+  </div>
+</footer>

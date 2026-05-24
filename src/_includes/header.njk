@@ -1,0 +1,19 @@
+<header {% if header_glow !== false %}class="header-glow" {% endif %}id="main-header">
+  <div class="container nav">
+    <a href="/">
+      <img src="/image/Text only white SVG.svg" class="logo" alt="Loz Town Patrol">
+    </a>
+    <button type="button" class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span class="icon-open" aria-hidden="true"><i class="fa-solid fa-bars"></i></span>
+      <span class="icon-close" aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="/" {% if page_active == 'accueil' %}class="active"{% endif %}>Accueil</a></li>
+        <li><a href="/events/" {% if page_active == 'evenements' %}class="active"{% endif %}>Événements</a></li>
+        <li><a href="/about/" {% if page_active == 'about' %}class="active"{% endif %}>À propos</a></li>
+        <li><a href="/contact/" {% if page_active == 'contact' %}class="active"{% endif %}>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
