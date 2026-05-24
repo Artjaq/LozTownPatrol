@@ -13,12 +13,11 @@
 
   {% include "header.njk" %}
 
-  {% block contenu %}{% endblock %}
+  <main>{{ content | safe }}</main>
 
   {% include "footer.njk" %}
 
   <script src="/script.js"></script>
-  {% block scripts %}{% endblock %}
 
 </body>
 </html>

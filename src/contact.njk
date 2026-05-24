@@ -3,10 +3,7 @@ layout: base.njk
 titre: "Contact"
 page_active: contact
 permalink: /contact/
-header_glow: false
-footer_simple: true
 ---
-{% block contenu %}
 
 <section class="page-head">
   <div class="container">
@@ -95,9 +92,6 @@ footer_simple: true
   </div>
 </section>
 
-{% endblock %}
-
-{% block scripts %}
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contactForm');
@@ -113,4 +107,3 @@ footer_simple: true
     });
   });
 </script>
-{% endblock %}
