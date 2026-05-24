@@ -46,10 +46,30 @@ page_active: accueil
   <div class="container">
     <h2 class="section-title">Prochains événements</h2>
 
-    <div id="home-events-list" class="event-list flyers">
-      <!-- ZONE ÉVÉNEMENTS À VENIR — branchée en Phase 2b sur la collection -->
+    {% if collections.evenements_a_venir.length %}
+      <div class="event-grid">
+        {% for evenement in collections.evenements_a_venir | limit(3) %}
+        <article class="event-card">
+          {% if evenement.data.image_principale %}
+          <a class="event-media" href="/events/{{ evenement.page.fileSlug }}/" aria-label="Voir {{ evenement.data.titre }}">
+            <img src="{{ evenement.data.image_principale }}" alt="{{ evenement.data.titre }}" loading="lazy">
+          </a>
+          {% endif %}
+          <div class="event-body">
+            <div class="event-meta">
+              {{- evenement.data.date | dateLocale -}}
+              {%- if evenement.data.lieu %} — {{ evenement.data.lieu }}{% endif -%}
+            </div>
+            <h3 class="event-name">{{ evenement.data.titre }}</h3>
+            <div class="event-actions">
+              <a class="btn btn-solid" href="/events/{{ evenement.page.fileSlug }}/">Voir les détails</a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
-  </div>
 </section>
 
 <section class="slider-wrap slider-designed">

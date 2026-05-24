@@ -63,3 +63,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Lightbox — s'initialise uniquement si #lightbox est présent dans le DOM
+document.addEventListener('DOMContentLoaded', () => {
+    const boiteLumineuse = document.getElementById('lightbox');
+    if (!boiteLumineuse) return;
+
+    const imageActive = boiteLumineuse.querySelector('.lightbox-img');
+    const boutonFermer = boiteLumineuse.querySelector('.lightbox-close');
+
+    function ouvrirLightbox(src, alt) {
+        imageActive.src = src;
+        imageActive.alt = alt;
+        boiteLumineuse.hidden = false;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function fermerLightbox() {
+        boiteLumineuse.hidden = true;
+        imageActive.src = '';
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.photo-item').forEach(lien => {
+        lien.addEventListener('click', e => {
+            e.preventDefault();
+            ouvrirLightbox(lien.href, lien.querySelector('img')?.alt || '');
+        });
+    });
+
+    boutonFermer.addEventListener('click', fermerLightbox);
+
+    // Fermeture au clic sur le fond (pas sur l'image)
+    boiteLumineuse.addEventListener('click', e => {
+        if (e.target === boiteLumineuse) fermerLightbox();
+    });
+
+    // Fermeture avec la touche Échap
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !boiteLumineuse.hidden) fermerLightbox();
+    });
+});
+

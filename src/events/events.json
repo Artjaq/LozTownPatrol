@@ -1,0 +1,5 @@
+{
+  "layout": "event.njk",
+  "permalink": "/events/{{ page.fileSlug }}/",
+  "page_active": "evenements"
+}

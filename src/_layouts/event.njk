@@ -1,0 +1,83 @@
+---
+layout: base.njk
+---
+
+<section class="detail-hero"{% if image_principale %} style="--cover:url('{{ image_principale }}')"{% endif %}>
+  <div class="detail-hero-overlay"></div>
+  <div class="container detail-hero-inner">
+
+    <a href="/events/" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> Tous les événements
+    </a>
+
+    {% if date | estAvenir %}
+    <span class="badge-upcoming">À venir</span>
+    {% endif %}
+
+    <h1 class="detail-title">{{ titre }}</h1>
+
+    <p class="detail-meta">
+      {{- date | dateLocale -}}
+      {%- if lieu %} — {{ lieu }}{% endif -%}
+      {%- if heure %} — {{ heure }}{% endif -%}
+    </p>
+
+  </div>
+</section>
+
+<div class="container detail-body">
+
+  {% if content %}
+  <section class="detail-section">
+    <p class="detail-desc">{{ content | safe }}</p>
+  </section>
+  {% endif %}
+
+  {% if photos and photos.length %}
+  <section class="detail-section">
+    <h2 class="detail-section-title">Photos</h2>
+    <div class="photo-grid">
+      {% for url_photo in photos %}
+      <a class="photo-item" href="{{ url_photo }}" target="_blank" rel="noopener" aria-label="Photo {{ loop.index }}">
+        <img src="{{ url_photo }}" alt="Photo {{ loop.index }}" loading="lazy">
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if videos_youtube and videos_youtube.length %}
+  <section class="detail-section">
+    <h2 class="detail-section-title">Vidéos</h2>
+    <div class="video-grid">
+      {% for video in videos_youtube %}
+      <div class="video-item">
+        {% if video.titre %}<p class="video-title">{{ video.titre }}</p>{% endif %}
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/{{ video.url | youtubeId }}?rel=0"
+            title="{{ video.titre or 'Vidéo' }}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="detail-back-row">
+    <a href="/events/" class="btn btn-ghost">
+      <i class="fa-solid fa-arrow-left"></i> Retour aux événements
+    </a>
+  </div>
+
+</div>
+
+<div id="lightbox" class="lightbox" aria-modal="true" aria-label="Visualiseur de photo" role="dialog" hidden>
+  <button class="lightbox-close" aria-label="Fermer">&times;</button>
+  <img class="lightbox-img" src="" alt="">
+</div>

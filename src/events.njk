@@ -7,15 +7,71 @@ permalink: /events/
 
 <section class="page-head">
   <div class="container">
-    <h1>Événements passés</h1>
+    <h1>Événements</h1>
     <p>Toutes nos sessions & soirées</p>
   </div>
 </section>
 
 <section class="events-archive">
   <div class="container">
-    <div id="events-container">
-      <!-- LISTE ÉVÉNEMENTS — branchée en Phase 2b sur la collection -->
+
+    <div class="year-section">
+      <h2 class="year-title">Prochains événements</h2>
+      {% if collections.evenements_a_venir.length %}
+      <div class="event-grid">
+        {% for evenement in collections.evenements_a_venir %}
+        <article class="event-card">
+          {% if evenement.data.image_principale %}
+          <a class="event-media" href="/events/{{ evenement.page.fileSlug }}/" aria-label="Voir {{ evenement.data.titre }}">
+            <img src="{{ evenement.data.image_principale }}" alt="{{ evenement.data.titre }}" loading="lazy">
+          </a>
+          {% endif %}
+          <div class="event-body">
+            <div class="event-meta">
+              {{- evenement.data.date | dateLocale -}}
+              {%- if evenement.data.lieu %} — {{ evenement.data.lieu }}{% endif -%}
+            </div>
+            <h3 class="event-name">{{ evenement.data.titre }}</h3>
+            <div class="event-actions">
+              <a class="btn btn-solid" href="/events/{{ evenement.page.fileSlug }}/">Voir les détails</a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="muted">Aucun événement à venir pour le moment.</p>
+      {% endif %}
     </div>
+
+    <div class="year-section">
+      <h2 class="year-title">Événements passés</h2>
+      {% if collections.evenements_passes.length %}
+      <div class="event-grid">
+        {% for evenement in collections.evenements_passes %}
+        <article class="event-card">
+          {% if evenement.data.image_principale %}
+          <a class="event-media" href="/events/{{ evenement.page.fileSlug }}/" aria-label="Voir {{ evenement.data.titre }}">
+            <img src="{{ evenement.data.image_principale }}" alt="{{ evenement.data.titre }}" loading="lazy">
+          </a>
+          {% endif %}
+          <div class="event-body">
+            <div class="event-meta">
+              {{- evenement.data.date | dateLocale -}}
+              {%- if evenement.data.lieu %} — {{ evenement.data.lieu }}{% endif -%}
+            </div>
+            <h3 class="event-name">{{ evenement.data.titre }}</h3>
+            <div class="event-actions">
+              <a class="btn btn-solid" href="/events/{{ evenement.page.fileSlug }}/">Voir les détails</a>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="muted">Aucun événement passé pour le moment.</p>
+      {% endif %}
+    </div>
+
   </div>
 </section>
