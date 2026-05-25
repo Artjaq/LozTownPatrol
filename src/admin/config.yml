@@ -21,7 +21,7 @@ auth:
   last_name_claim: last_name
   avatar_url_claim: avatar_url
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
-site_url: https://www.loztownpatrol.netlify.app
+site_url: https://loztownpatrol.netlify.app
 
 # Dossier de stockage des médias uploadés via le CMS
 media_folder: "src/uploads"
