@@ -4,7 +4,9 @@ date: 2025-05-10
 lieu: Local
 heure: 21h00
 image_principale: /uploads/img_4963-scaled.jpeg
-photos: []
+photos:
+  - /uploads/img_4963-scaled.jpeg
+  - /uploads/img_4963-scaled.jpeg
 videos_youtube: []
 publie: true
 ---
