@@ -13,7 +13,9 @@ artistes:
   - T-Bredda
   - Wadding Birds
 image_principale: /uploads/capture-d’écran-2026-06-09-à-15.34.15.png
-photos: []
+photos:
+  - /uploads/img_2338.jpeg
+  - /uploads/img_2341.jpeg
 videos_youtube: []
 publie: true
 ---
