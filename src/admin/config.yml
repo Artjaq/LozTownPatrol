@@ -53,6 +53,33 @@ collections:
         widget: "string"
         required: false
         hint: "Ex : 21h00"
+      - label: "Prix / entrée"
+        name: "prix"
+        widget: "string"
+        required: false
+        hint: "Ex : Libre, 15.–, Prix libre"
+      - label: "Genres / styles"
+        name: "genres"
+        widget: "list"
+        required: false
+        field:
+          label: "Genre"
+          name: "genre"
+          widget: "string"
+        hint: "Ex : Roots, Dub, Steppas, Heavy Bass"
+      - label: "Artistes / line-up"
+        name: "artistes"
+        widget: "list"
+        required: false
+        field:
+          label: "Artiste"
+          name: "artiste"
+          widget: "string"
+      - label: "Lien événement Facebook"
+        name: "lien_facebook"
+        widget: "string"
+        required: false
+        hint: "URL complète de l'événement Facebook"
       - label: "Image principale"
         name: "image_principale"
         widget: "image"

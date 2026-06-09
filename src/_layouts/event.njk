@@ -26,48 +26,111 @@ layout: base.njk
 </section>
 
 <div class="container detail-body">
+  <div class="detail-grid">
 
-  {% if content %}
-  <section class="detail-section">
-    <p class="detail-desc">{{ content | safe }}</p>
-  </section>
-  {% endif %}
+    <div class="detail-main">
 
-  {% if photos and photos.length %}
-  <section class="detail-section">
-    <h2 class="detail-section-title">Photos</h2>
-    <div class="photo-grid">
-      {% for url_photo in photos %}
-      <a class="photo-item" href="{{ url_photo }}" target="_blank" rel="noopener" aria-label="Photo {{ loop.index }}">
-        <img src="{{ url_photo }}" alt="Photo {{ loop.index }}" loading="lazy">
-      </a>
-      {% endfor %}
+      {% if genres and genres.length %}
+      <div class="detail-chips">
+        {% for genre in genres %}
+        <span class="chip">{{ genre }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if content %}
+      <section class="detail-section">
+        <div class="detail-desc">{{ content | safe }}</div>
+      </section>
+      {% endif %}
+
+      {% if photos and photos.length %}
+      <section class="detail-section">
+        <h2 class="detail-section-title">Photos</h2>
+        <div class="photo-grid">
+          {% for url_photo in photos %}
+          <a class="photo-item" href="{{ url_photo }}" target="_blank" rel="noopener" aria-label="Photo {{ loop.index }}">
+            <img src="{{ url_photo }}" alt="Photo {{ loop.index }}" loading="lazy">
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if videos_youtube and videos_youtube.length %}
+      <section class="detail-section">
+        <h2 class="detail-section-title">Vidéos</h2>
+        <div class="video-grid">
+          {% for video in videos_youtube %}
+          <div class="video-item">
+            {% if video.titre %}<p class="video-title">{{ video.titre }}</p>{% endif %}
+            <div class="video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/{{ video.url | youtubeId }}?rel=0"
+                title="{{ video.titre or 'Vidéo' }}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
     </div>
-  </section>
-  {% endif %}
 
-  {% if videos_youtube and videos_youtube.length %}
-  <section class="detail-section">
-    <h2 class="detail-section-title">Vidéos</h2>
-    <div class="video-grid">
-      {% for video in videos_youtube %}
-      <div class="video-item">
-        {% if video.titre %}<p class="video-title">{{ video.titre }}</p>{% endif %}
-        <div class="video-wrap">
-          <iframe
-            src="https://www.youtube.com/embed/{{ video.url | youtubeId }}?rel=0"
-            title="{{ video.titre or 'Vidéo' }}"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
+    <aside class="detail-sidebar">
+
+      <div class="detail-fact">
+        <span class="detail-fact-label">Date</span>
+        <span class="detail-fact-value">{{ date | dateLocale }}</span>
+      </div>
+
+      <div class="detail-fact">
+        <span class="detail-fact-label">Lieu</span>
+        <span class="detail-fact-value">{{ lieu }}</span>
+      </div>
+
+      {% if heure %}
+      <div class="detail-fact">
+        <span class="detail-fact-label">Heure</span>
+        <span class="detail-fact-value">{{ heure }}</span>
+      </div>
+      {% endif %}
+
+      {% if prix %}
+      <div class="detail-fact">
+        <span class="detail-fact-label">Entrée</span>
+        <span class="detail-fact-value">{{ prix }}</span>
+      </div>
+      {% endif %}
+
+      {% if artistes and artistes.length %}
+      <div class="detail-fact">
+        <span class="detail-fact-label">Line-up</span>
+        <div class="detail-lineup">
+          {% for artiste in artistes %}
+          <div class="detail-lineup-item">
+            <span class="detail-lineup-dot"></span>
+            <span>{{ artiste }}</span>
+          </div>
+          {% endfor %}
         </div>
       </div>
-      {% endfor %}
-    </div>
-  </section>
-  {% endif %}
+      {% endif %}
+
+      {% if lien_facebook %}
+      <a href="{{ lien_facebook }}" target="_blank" rel="noopener" class="detail-btn-ghost">
+        <i class="fa-brands fa-facebook"></i> Événement Facebook
+      </a>
+      {% endif %}
+
+    </aside>
+
+  </div>
 
   <div class="detail-back-row">
     <a href="/events/" class="btn btn-ghost">

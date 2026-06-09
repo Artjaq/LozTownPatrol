@@ -68,6 +68,15 @@ export default function (eleventyConfig) {
     return dateEvent >= aujourd_hui;
   });
 
+  // Filtre : date courte pour les badges (ex: "21 JUIN")
+  eleventyConfig.addFilter("dateJourMois", function (dateObj) {
+    if (!dateObj) return "";
+    const d = new Date(dateObj);
+    const jour = d.toLocaleDateString("fr-CH", { day: "numeric", timeZone: "UTC" });
+    const mois = d.toLocaleDateString("fr-CH", { month: "long", timeZone: "UTC" }).toUpperCase();
+    return `${jour} ${mois}`;
+  });
+
   return {
     dir: {
       input: "src",

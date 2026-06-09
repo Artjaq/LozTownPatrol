@@ -1087,3 +1087,290 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 .btn-ghost{
   background: transparent;
 }
+
+/* =========================
+   EVENTS — DESIGN CARTES POSTER (Direction D)
+   ========================= */
+
+/* Section label : h2 + ligne + compteur */
+.sec-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 22px;
+}
+.sec-label h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.sec-label-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.sec-label-count {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+
+/* Espacement des sections À venir / Passés */
+.events-section {
+  padding: 42px 0;
+}
+.events-section + .events-section {
+  border-top: 1px dashed var(--line);
+}
+
+/* Grille de cartes poster */
+.poster-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Carte poster */
+.pcard {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #101010;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.pcard:hover {
+  transform: translateY(-3px);
+  border-color: rgba(230, 180, 34, .45);
+  box-shadow: 0 10px 26px rgba(0,0,0,.32);
+}
+
+/* Zone image (ratio 3:4) */
+.pcard-top {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: #0f0f0f;
+}
+.pcard-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform .35s ease;
+}
+.pcard:hover .pcard-top img {
+  transform: scale(1.06);
+}
+.pcard-top .event-media-placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+/* Badge date (haut gauche, fond doré) */
+.pcard-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--gold);
+  color: #0b0b0b;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .12em;
+  padding: 5px 11px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Badge prix (haut droite, semi-transparent) */
+.pcard-prix {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(12,12,13,.8);
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--ink);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Corps de la carte */
+.pcard-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.pcard-title {
+  margin: 0;
+  font-size: 18px;
+  font-family: var(--sans);
+  letter-spacing: .3px;
+  line-height: 1.2;
+}
+.pcard-meta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+.pcard-chips {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+/* Lien bas de carte — pseudo-élément étiré sur toute la carte */
+.pcard-link {
+  margin-top: auto;
+  padding-top: 6px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  transition: color .15s ease;
+  display: inline-block;
+}
+.pcard-link:hover { color: var(--ink); }
+.pcard-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* Modificateur : cartes passées atténuées */
+.poster-row--past .pcard { opacity: .66; }
+
+/* Responsive poster-row */
+@media (max-width: 900px) {
+  .poster-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .poster-row { grid-template-columns: 1fr; }
+}
+
+/* =========================
+   EVENT DETAIL — LAYOUT 2 COLONNES
+   ========================= */
+
+/* Grille main + sidebar */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Colonne principale */
+.detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+/* Chips de genres en haut du détail */
+.detail-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Sidebar — carte infos */
+.detail-sidebar {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: fit-content;
+  background: #101010;
+  min-width: 0;
+}
+
+/* Fait (label + valeur) */
+.detail-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.detail-fact-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+.detail-fact-value {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 17px;
+}
+
+/* Line-up avec bullet dorée */
+.detail-lineup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+.detail-lineup-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.detail-lineup-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Bouton ghost (lien Facebook) */
+.detail-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: transparent;
+  text-decoration: none;
+  transition: border-color .15s ease, color .15s ease;
+}
+.detail-btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Responsive : sidebar passe sous le contenu */
+@media (max-width: 900px) {
+  .detail-grid { grid-template-columns: 1fr; }
+}

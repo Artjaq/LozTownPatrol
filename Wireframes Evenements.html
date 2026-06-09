@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframes — Événements · Loz Town Patrol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0d;
+    --panel:#141415;
+    --panel-2:#1a1a1c;
+    --ink:#ece8df;          /* cream foreground from brand */
+    --muted:#7d7a73;
+    --line:#2a2a2c;
+    --gold:#e5b83c;
+    --gold-dim:#8a7027;
+    --rasta-g:#2f8f4e;
+    --rasta-r:#b6452f;
+    font-size:16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Space Mono",monospace;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ---------- WIREFRAME CHROME ---------- */
+  .chrome{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,10,11,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .chrome-rasta{height:2px;background:linear-gradient(90deg,var(--rasta-g),var(--gold),var(--rasta-r));opacity:.85;}
+  .chrome-inner{
+    max-width:1280px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  }
+  .brandmark{display:flex;flex-direction:column;line-height:.9;}
+  .brandmark .b1{font-family:"Caveat",cursive;font-size:1.45rem;font-weight:700;color:var(--ink);letter-spacing:.5px;}
+  .brandmark .b2{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.32em;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;}
+  .tab{
+    font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.04em;
+    color:var(--muted);background:transparent;border:1px solid var(--line);
+    padding:8px 14px;border-radius:999px;cursor:pointer;transition:.15s;
+    text-transform:uppercase;white-space:nowrap;
+  }
+  .tab:hover{color:var(--ink);border-color:#3a3a3c;}
+  .tab.active{color:#0c0c0d;background:var(--gold);border-color:var(--gold);font-weight:700;}
+  .tab .k{opacity:.6;margin-right:6px;}
+  .tab.active .k{opacity:.7;}
+  .chrome-right{margin-left:auto;display:flex;align-items:center;gap:16px;}
+  .seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
+  .seg button{
+    font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+    background:transparent;color:var(--muted);border:0;padding:8px 14px;cursor:pointer;transition:.15s;
+  }
+  .seg button.active{background:var(--panel-2);color:var(--ink);}
+  .toggle-note{
+    display:flex;align-items:center;gap:8px;font-family:"Caveat",cursive;font-size:1.05rem;color:var(--gold);cursor:pointer;user-select:none;
+  }
+  .toggle-note .dot{width:14px;height:14px;border-radius:4px;border:1.5px solid var(--gold);display:inline-block;position:relative;}
+  body.notes-on .toggle-note .dot{background:var(--gold);}
+  body.notes-on .toggle-note .dot::after{content:"✓";position:absolute;inset:-3px 0 0 1px;font-size:.7rem;color:#0c0c0d;font-family:"Space Mono";}
+
+  /* ---------- STAGE ---------- */
+  .stage{max-width:1280px;margin:0 auto;padding:34px 28px 90px;}
+  .dir{display:none;}
+  .dir.active{display:block;animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  .dir-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:18px;flex-wrap:wrap;}
+  .dir-title{font-family:"Oswald",sans-serif;font-weight:700;font-size:1.7rem;letter-spacing:.01em;text-transform:uppercase;margin:0;}
+  .dir-title .num{color:var(--gold);margin-right:10px;}
+  .dir-desc{font-family:"Caveat",cursive;font-size:1.3rem;color:var(--muted);max-width:520px;line-height:1.2;text-align:right;}
+
+  /* browser frame holding the wireframe */
+  .frame{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg);box-shadow:0 30px 80px -50px #000;}
+  .frame-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;background:var(--panel);border-bottom:1px solid var(--line);}
+  .frame-bar .d{width:11px;height:11px;border-radius:50%;background:#333;}
+  .frame-bar .url{margin-left:14px;font-size:.7rem;color:var(--muted);letter-spacing:.04em;}
+  .frame-body{padding:0;}
+
+  /* mock site header inside the frame */
+  .m-rasta{height:2px;background:linear-gradient(90deg,var(--rasta-g),var(--gold),var(--rasta-r));opacity:.8;}
+  .m-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid var(--line);}
+  .m-logo{font-family:"Caveat",cursive;font-weight:700;font-size:1.2rem;line-height:.85;}
+  .m-logo span{display:block;font-family:"Space Mono";font-size:.5rem;letter-spacing:.3em;color:var(--muted);margin-top:2px;}
+  .m-menu{display:flex;gap:26px;font-size:.74rem;color:var(--muted);}
+  .m-menu .on{color:var(--gold);}
+
+  /* page header */
+  .p-head{text-align:center;padding:46px 20px 30px;border-bottom:1px dashed var(--line);}
+  .p-head h1{font-family:"Oswald",sans-serif;font-weight:700;font-size:3.1rem;letter-spacing:.02em;text-transform:uppercase;margin:0;}
+  .p-head .sub{color:var(--muted);font-size:.82rem;letter-spacing:.12em;margin-top:10px;text-transform:uppercase;}
+
+  .section-pad{padding:42px 40px;}
+  .sec-label{display:flex;align-items:center;gap:14px;margin:0 0 22px;}
+  .sec-label h2{font-family:"Oswald",sans-serif;font-weight:600;font-size:1.15rem;letter-spacing:.16em;text-transform:uppercase;margin:0;color:var(--ink);white-space:nowrap;}
+  .sec-label .ln{flex:1;height:1px;background:var(--line);}
+  .sec-label .ct{font-size:.68rem;color:var(--muted);}
+
+  /* wireframe primitives */
+  .ph{position:relative;background:
+      repeating-linear-gradient(135deg,#1c1c1e 0 10px,#161618 10px 20px);
+      border:1px solid var(--line);display:flex;align-items:center;justify-content:center;border-radius:8px;overflow:hidden;}
+  .ph .cap{font-size:.62rem;letter-spacing:.18em;color:#5a5750;text-transform:uppercase;text-align:center;padding:6px;}
+  .skl{background:var(--panel-2);border-radius:4px;display:block;}
+  .skl.t{height:13px;}
+  .skl.t.lg{height:22px;}
+  .chip{display:inline-flex;align-items:center;font-size:.64rem;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 11px;}
+  .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#0c0c0d;font-family:"Space Mono";font-weight:700;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:999px;}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid #3a3a3c;color:var(--ink);font-family:"Space Mono";font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:999px;background:transparent;}
+  .meta{font-size:.7rem;letter-spacing:.08em;color:var(--muted);}
+  .meta .gold{color:var(--gold);}
+  .title-evt{font-family:"Oswald",sans-serif;font-weight:600;font-size:1.5rem;letter-spacing:.01em;line-height:1.05;margin:0;}
+
+  /* annotations */
+  .note{display:none;}
+  body.notes-on .note{
+    display:block;font-family:"Caveat",cursive;font-size:1.18rem;line-height:1.15;color:var(--gold);
+    position:relative;padding-left:22px;margin:14px 0;
+  }
+  body.notes-on .note::before{content:"";position:absolute;left:4px;top:5px;width:9px;height:9px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg);}
+  body.notes-on .note-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;}
+  .note-pill{display:none;}
+  body.notes-on .note-pill{
+    display:inline-block;font-family:"Caveat",cursive;font-size:1.05rem;color:#0c0c0d;background:var(--gold);
+    padding:1px 10px;border-radius:6px;transform:rotate(-1.2deg);white-space:nowrap;}
+
+  /* ===== DIRECTION A : agenda lignes ===== */
+  .agenda{display:flex;flex-direction:column;}
+  .agenda-row{display:grid;grid-template-columns:120px 1fr auto;gap:28px;align-items:center;padding:26px 4px;border-top:1px solid var(--line);}
+  .agenda-row:last-child{border-bottom:1px solid var(--line);}
+  .agenda-row .datebox{text-align:left;}
+  .agenda-row .datebox .d{font-family:"Oswald";font-weight:700;font-size:2.4rem;line-height:.85;}
+  .agenda-row .datebox .my{font-size:.66rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin-top:6px;}
+  .agenda-row .mid{display:flex;flex-direction:column;gap:10px;}
+  .agenda-row .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .agenda-row .end{display:flex;flex-direction:column;align-items:flex-end;gap:10px;text-align:right;}
+  .past .agenda-row{opacity:.62;}
+  .thumb-strip{display:flex;gap:14px;overflow:hidden;}
+  .thumb-strip .ph{flex:0 0 200px;height:120px;}
+
+  /* ===== DIRECTION B : affiche vedette ===== */
+  .feat{display:grid;grid-template-columns:0.78fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .feat .poster{aspect-ratio:3/4;min-height:380px;}
+  .feat .poster .ph{position:absolute;inset:0;border:0;border-radius:0;}
+  .feat .info{padding:38px;display:flex;flex-direction:column;gap:18px;justify-content:center;}
+  .feat .tagrow{display:flex;gap:8px;flex-wrap:wrap;}
+  .feat .badge{position:absolute;top:18px;left:18px;background:var(--gold);color:#0c0c0d;font-weight:700;font-size:.64rem;letter-spacing:.14em;padding:6px 12px;border-radius:999px;text-transform:uppercase;}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px;}
+  .mini{display:grid;grid-template-columns:90px 1fr;gap:18px;border:1px solid var(--line);border-radius:12px;padding:16px;align-items:center;}
+  .mini .ph{height:90px;}
+  .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .photo-grid .ph{aspect-ratio:1/1;}
+  .photo-grid .ph.wide{grid-column:span 2;aspect-ratio:2/1;}
+
+  /* ===== DIRECTION C : index typo ===== */
+  .toggle-tabs{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:30px;}
+  .toggle-tabs button{font-family:"Space Mono";font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:0;padding:10px 22px;cursor:pointer;}
+  .toggle-tabs button.active{background:var(--gold);color:#0c0c0d;font-weight:700;}
+  .index-list{border-top:1px solid var(--line);}
+  .index-row{display:grid;grid-template-columns:54px 150px 1fr 200px 40px;gap:20px;align-items:center;padding:24px 6px;border-bottom:1px solid var(--line);cursor:pointer;transition:.18s;position:relative;}
+  .index-row:hover{background:var(--panel);padding-left:18px;}
+  .index-row .idx{font-family:"Space Mono";font-size:.7rem;color:var(--gold);}
+  .index-row .dt{font-size:.74rem;letter-spacing:.08em;color:var(--muted);}
+  .index-row .nm{font-family:"Oswald";font-weight:600;font-size:1.55rem;letter-spacing:.01em;}
+  .index-row .st{font-size:.7rem;color:var(--muted);text-align:left;}
+  .index-row .ar{font-family:"Oswald";font-size:1.4rem;color:var(--muted);text-align:right;transition:.18s;}
+  .index-row:hover .ar{color:var(--gold);transform:translateX(4px);}
+  .cpast .index-row .nm{color:var(--muted);}
+
+  /* ===== DIRECTION D : cartes poster ===== */
+  .poster-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .pcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;}
+  .pcard .top{position:relative;aspect-ratio:3/4;}
+  .pcard .top .ph{position:absolute;inset:0;border:0;border-radius:0;}
+  .pcard .badge{position:absolute;top:14px;left:14px;background:var(--gold);color:#0c0c0d;font-weight:700;font-size:.6rem;letter-spacing:.12em;padding:5px 11px;border-radius:999px;text-transform:uppercase;}
+  .pcard .price{position:absolute;top:14px;right:14px;background:rgba(12,12,13,.8);border:1px solid var(--line);font-size:.62rem;letter-spacing:.08em;padding:5px 10px;border-radius:999px;color:var(--ink);}
+  .pcard .body{padding:20px;display:flex;flex-direction:column;gap:12px;flex:1;}
+  .pcard .chips{display:flex;gap:7px;flex-wrap:wrap;}
+  .pcard .foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px;}
+  .poster-row.past .pcard{opacity:.66;}
+  .poster-row.past{grid-template-columns:repeat(3,1fr);}
+
+  /* ===== DETAIL PAGE (shared, lightly adapted) ===== */
+  .det-hero{position:relative;height:340px;}
+  .det-hero .ph{position:absolute;inset:0;border:0;border-radius:0;}
+  .det-hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,13,.35),rgba(12,12,13,.95));}
+  .det-hero .cap-wrap{position:absolute;left:0;right:0;bottom:30px;text-align:center;}
+  .det-hero .back{font-size:.72rem;color:var(--gold);letter-spacing:.06em;}
+  .det-hero h1{font-family:"Oswald";font-weight:700;font-size:2.8rem;text-transform:uppercase;margin:10px 0 8px;}
+  .det-body{display:grid;grid-template-columns:1fr 320px;gap:40px;padding:42px 40px;}
+  .det-main p{color:var(--muted);line-height:1.6;font-size:.86rem;}
+  .det-side{border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:18px;height:fit-content;}
+  .det-fact{display:flex;flex-direction:column;gap:5px;}
+  .det-fact .k{font-size:.62rem;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;}
+  .det-fact .v{font-family:"Oswald";font-weight:500;font-size:1.1rem;}
+  .lineup{display:flex;flex-direction:column;gap:8px;}
+  .lineup .ar{display:flex;align-items:center;gap:10px;font-size:.82rem;}
+  .lineup .ar .b{width:7px;height:7px;background:var(--gold);border-radius:50%;}
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
+  .gal .ph{aspect-ratio:1/1;}
+
+  .legend{margin-top:34px;display:flex;gap:26px;flex-wrap:wrap;align-items:center;font-size:.7rem;color:var(--muted);}
+  .legend .it{display:flex;align-items:center;gap:8px;}
+  .legend .sw{width:26px;height:14px;border-radius:3px;}
+
+  @media(max-width:900px){
+    .feat{grid-template-columns:1fr;}
+    .det-body{grid-template-columns:1fr;}
+    .poster-row,.poster-row.past{grid-template-columns:1fr 1fr;}
+    .agenda-row{grid-template-columns:90px 1fr;gap:18px;}
+    .agenda-row .end{grid-column:1/-1;align-items:flex-start;flex-direction:row;}
+    .index-row{grid-template-columns:30px 1fr 30px;}
+    .index-row .dt,.index-row .st{display:none;}
+  }
+</style>
+</head>
+<body class="notes-on">
+
+<div class="chrome">
+  <div class="chrome-rasta"></div>
+  <div class="chrome-inner">
+    <div class="brandmark">
+      <span class="b1">Wireframes — Événements</span>
+      <span class="b2">Loz Town Patrol · exploration</span>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-dir="a"><span class="k">A</span>Agenda lignes</button>
+      <button class="tab" data-dir="b"><span class="k">B</span>Affiche vedette</button>
+      <button class="tab" data-dir="c"><span class="k">C</span>Index typo</button>
+      <button class="tab" data-dir="d"><span class="k">D</span>Cartes poster</button>
+    </div>
+    <div class="chrome-right">
+      <div class="seg" id="viewseg">
+        <button class="active" data-view="page">Page liste</button>
+        <button data-view="detail">Page détail</button>
+      </div>
+      <div class="toggle-note" id="noteToggle"><span class="dot"></span> Annotations</div>
+    </div>
+  </div>
+</div>
+
+<div class="stage">
+
+  <!-- ============ DIRECTION A ============ -->
+  <section class="dir active" data-dir="a">
+    <div class="dir-head">
+      <h2 class="dir-title"><span class="num">A</span>Agenda en lignes</h2>
+      <p class="dir-desc">Une ligne = un événement. Date énorme à gauche, tout se scanne en une colonne. Idéal quand il y a peu de dates : ça respire, c'est carré.</p>
+    </div>
+
+    <!-- PAGE LISTE -->
+    <div class="view page active">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements</span></div>
+        <div class="frame-body">
+          <div class="m-rasta"></div>
+          <div class="m-nav">
+            <div class="m-logo">Loz Town Patrol<span>SOUNDSYSTEM</span></div>
+            <div class="m-menu"><span>Accueil</span><span class="on">Événements</span><span>À propos</span><span>Contact</span></div>
+          </div>
+          <div class="p-head">
+            <h1>Événements</h1>
+            <div class="sub">Toutes nos sessions &amp; soirées</div>
+          </div>
+
+          <div class="section-pad">
+            <div class="note">Date traitée comme un objet graphique fort (gros chiffre Oswald) — l'agenda devient lisible d'un coup d'œil, même avec 1 seul event.</div>
+            <div class="sec-label"><h2>À venir</h2><span class="ln"></span><span class="ct">02</span></div>
+
+            <div class="agenda">
+              <div class="agenda-row">
+                <div class="datebox"><div class="d">21</div><div class="my">JUIN 2026</div></div>
+                <div class="mid">
+                  <h3 class="title-evt">Fête de la Musique</h3>
+                  <div class="meta">Place de la Riponne, Lausanne · <span class="gold">dès 18h00</span></div>
+                  <div class="chips"><span class="chip">Roots</span><span class="chip">Dub</span><span class="chip">Vinyl Set</span></div>
+                </div>
+                <div class="end">
+                  <div class="meta">Entrée libre</div>
+                  <span class="btn-gold">Voir les détails →</span>
+                </div>
+              </div>
+              <div class="agenda-row">
+                <div class="datebox"><div class="d">23</div><div class="my">AOÛT 2026</div></div>
+                <div class="mid">
+                  <h3 class="title-evt">Summer Session 2026</h3>
+                  <div class="meta">Lausanne · <span class="gold">21h00 → tard</span></div>
+                  <div class="chips"><span class="chip">Steppas</span><span class="chip">Heavy Bass</span><span class="chip">Sound System</span></div>
+                </div>
+                <div class="end">
+                  <div class="meta">15.–</div>
+                  <span class="btn-gold">Voir les détails →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="note">Les passés réutilisent EXACTEMENT la même ligne, juste atténuée — pas de composant en plus à maintenir.</div>
+            <div class="sec-label" style="margin-top:40px;"><h2>Passés</h2><span class="ln"></span><span class="ct">archive</span></div>
+            <div class="agenda past">
+              <div class="agenda-row">
+                <div class="datebox"><div class="d">10</div><div class="my">MAI 2025</div></div>
+                <div class="mid">
+                  <h3 class="title-evt">Session Roots — Mai 2025</h3>
+                  <div class="meta">Local · 21h00</div>
+                  <div class="chips"><span class="chip">Roots</span><span class="chip">Dub</span></div>
+                </div>
+                <div class="end">
+                  <div class="meta">+ photos</div>
+                  <span class="btn-ghost">Revoir →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE DETAIL -->
+    <div class="view detail">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements/session-roots-mai-2025</span></div>
+        <div class="frame-body">
+          <div class="det-hero">
+            <div class="ph"><span class="cap">PHOTO SOUND SYSTEM · large</span></div>
+            <div class="scrim"></div>
+            <div class="cap-wrap">
+              <div class="back">← Tous les événements</div>
+              <h1>Session Roots — Mai 2025</h1>
+              <div class="meta">10 MAI 2025 · LOCAL · 21H00</div>
+            </div>
+          </div>
+          <div class="det-body">
+            <div class="det-main">
+              <div class="note">Le bloc infos reste collé à droite pendant le scroll — date, line-up et prix toujours visibles, c'est ce qu'on cherche le plus vite.</div>
+              <div class="sec-label"><h2>Au programme</h2><span class="ln"></span></div>
+              <p>Soirée roots &amp; dub. Heavy bass, vinyl set, bonne vibes. Texte de présentation de l'événement — ambiance, sélecteurs invités, particularités de la session.</p>
+              <div class="sec-label" style="margin-top:30px;"><h2>Photos</h2><span class="ln"></span></div>
+              <div class="gal"><div class="ph"><span class="cap">PHOTO</span></div><div class="ph"><span class="cap">PHOTO</span></div><div class="ph"><span class="cap">PHOTO</span></div></div>
+            </div>
+            <aside class="det-side">
+              <div class="det-fact"><span class="k">Date</span><span class="v">10 mai 2025</span></div>
+              <div class="det-fact"><span class="k">Lieu</span><span class="v">Local · Lausanne</span></div>
+              <div class="det-fact"><span class="k">Heure</span><span class="v">21h00</span></div>
+              <div class="det-fact"><span class="k">Entrée</span><span class="v">Prix libre</span></div>
+              <div class="det-fact"><span class="k">Line-up</span>
+                <div class="lineup">
+                  <div class="ar"><span class="b"></span> Selecta TBA</div>
+                  <div class="ar"><span class="b"></span> MC invité</div>
+                </div>
+              </div>
+              <span class="btn-gold" style="justify-content:center;">Revoir la galerie</span>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION B ============ -->
+  <section class="dir" data-dir="b">
+    <div class="dir-head">
+      <h2 class="dir-title"><span class="num">B</span>Affiche en vedette</h2>
+      <p class="dir-desc">Le prochain event prend toute la place avec son flyer. Les suivants en mini-cartes. Les passés deviennent une galerie photo. Très visuel, met l'affiche en avant.</p>
+    </div>
+
+    <!-- PAGE LISTE -->
+    <div class="view page active">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements</span></div>
+        <div class="frame-body">
+          <div class="m-rasta"></div>
+          <div class="m-nav">
+            <div class="m-logo">Loz Town Patrol<span>SOUNDSYSTEM</span></div>
+            <div class="m-menu"><span>Accueil</span><span class="on">Événements</span><span>À propos</span><span>Contact</span></div>
+          </div>
+          <div class="p-head">
+            <h1>Événements</h1>
+            <div class="sub">La prochaine session</div>
+          </div>
+
+          <div class="section-pad">
+            <div class="note">L'affiche/flyer est le héros. Si pas d'image → placeholder rasta + gros titre typo, ça tient quand même.</div>
+            <div class="feat">
+              <div class="poster">
+                <div class="ph"><span class="cap">FLYER / AFFICHE · 3:4</span></div>
+                <span class="badge">Prochaine date</span>
+              </div>
+              <div class="info">
+                <div class="meta gold">VEN. 21 JUIN 2026 · 18H00</div>
+                <h3 class="title-evt" style="font-size:2.2rem;">Fête de la Musique</h3>
+                <div class="meta">Place de la Riponne, Lausanne</div>
+                <div class="tagrow"><span class="chip">Roots</span><span class="chip">Dub</span><span class="chip">Vinyl Set</span><span class="chip">Entrée libre</span></div>
+                <p style="color:var(--muted);font-size:.84rem;line-height:1.55;margin:4px 0 0;">Une phrase d'accroche sur la soirée — line-up, ambiance, sélecteurs invités.</p>
+                <div style="display:flex;gap:12px;margin-top:6px;"><span class="btn-gold">Voir les détails →</span><span class="btn-ghost">Event Facebook</span></div>
+              </div>
+            </div>
+
+            <div class="note">Les autres dates à venir = mini-cartes sobres, juste l'essentiel + flèche.</div>
+            <div class="mini-grid">
+              <div class="mini">
+                <div class="ph"><span class="cap">FLYER</span></div>
+                <div style="display:flex;flex-direction:column;gap:7px;">
+                  <div class="meta gold">23 AOÛT 2026</div>
+                  <h4 class="title-evt" style="font-size:1.15rem;">Summer Session 2026</h4>
+                  <div class="meta">Lausanne · 15.–</div>
+                  <div class="meta" style="color:var(--gold);">Voir les détails →</div>
+                </div>
+              </div>
+              <div class="mini" style="opacity:.5;border-style:dashed;align-items:center;justify-content:center;">
+                <div></div><div class="meta" style="text-align:center;">+ d'autres dates bientôt</div>
+              </div>
+            </div>
+
+            <div class="note">Les passés ne sont plus des cartes : c'est une galerie « Nos soirées en images », plus dans l'esprit sound-system.</div>
+            <div class="sec-label" style="margin-top:42px;"><h2>Soirées passées</h2><span class="ln"></span><span class="ct">galerie</span></div>
+            <div class="photo-grid">
+              <div class="ph wide"><span class="cap">SESSION ROOTS — MAI 2025</span></div>
+              <div class="ph"><span class="cap">PHOTO</span></div>
+              <div class="ph"><span class="cap">PHOTO</span></div>
+              <div class="ph"><span class="cap">PHOTO</span></div>
+              <div class="ph"><span class="cap">PHOTO</span></div>
+              <div class="ph wide"><span class="cap">PHOTO</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE DETAIL -->
+    <div class="view detail">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements/fete-de-la-musique-2026</span></div>
+        <div class="frame-body">
+          <div class="det-body" style="grid-template-columns:0.8fr 1fr;align-items:start;">
+            <div class="poster" style="position:relative;aspect-ratio:3/4;border:1px solid var(--line);border-radius:12px;overflow:hidden;">
+              <div class="ph" style="position:absolute;inset:0;border:0;border-radius:0;"><span class="cap">FLYER PLEIN FORMAT</span></div>
+            </div>
+            <div class="det-main">
+              <div class="back" style="font-size:.72rem;color:var(--gold);">← Tous les événements</div>
+              <h1 style="font-family:'Oswald';font-weight:700;font-size:2.6rem;text-transform:uppercase;margin:12px 0;">Fête de la Musique</h1>
+              <div class="tagrow" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;"><span class="chip">Roots</span><span class="chip">Dub</span><span class="chip">Vinyl Set</span></div>
+              <div class="note">Sur détail, le flyer reste plein format à gauche — on lit l'event comme une affiche.</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0;">
+                <div class="det-fact"><span class="k">Date</span><span class="v">21 juin 2026</span></div>
+                <div class="det-fact"><span class="k">Heure</span><span class="v">18h00</span></div>
+                <div class="det-fact"><span class="k">Lieu</span><span class="v">Riponne, Lausanne</span></div>
+                <div class="det-fact"><span class="k">Entrée</span><span class="v">Libre</span></div>
+              </div>
+              <p style="color:var(--muted);line-height:1.6;font-size:.86rem;">Texte de présentation. Line-up, déroulé de la soirée, infos pratiques.</p>
+              <div class="det-fact" style="margin-top:14px;"><span class="k">Line-up</span>
+                <div class="lineup"><div class="ar"><span class="b"></span> Selecta A</div><div class="ar"><span class="b"></span> Selecta B</div></div>
+              </div>
+              <div style="display:flex;gap:12px;margin-top:22px;"><span class="btn-gold">Billetterie</span><span class="btn-ghost">Event Facebook</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION C ============ -->
+  <section class="dir" data-dir="c">
+    <div class="dir-head">
+      <h2 class="dir-title"><span class="num">C</span>Index typographique</h2>
+      <p class="dir-desc">Zéro image dans la liste : un index façon affiche/programme. À venir ↔ Passés via un switch. Le plus épuré et le plus rapide à parcourir. Les visuels arrivent au clic.</p>
+    </div>
+
+    <!-- PAGE LISTE -->
+    <div class="view page active">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements</span></div>
+        <div class="frame-body">
+          <div class="m-rasta"></div>
+          <div class="m-nav">
+            <div class="m-logo">Loz Town Patrol<span>SOUNDSYSTEM</span></div>
+            <div class="m-menu"><span>Accueil</span><span class="on">Événements</span><span>À propos</span><span>Contact</span></div>
+          </div>
+          <div class="p-head">
+            <h1>Événements</h1>
+            <div class="sub">Programme — sessions &amp; soirées</div>
+          </div>
+
+          <div class="section-pad">
+            <div class="note-row">
+              <span class="note-pill">switch sans rechargement</span>
+              <span class="note-pill">tri par date</span>
+            </div>
+            <div class="toggle-tabs" id="ctoggle">
+              <button class="active" data-cv="up">À venir (2)</button>
+              <button data-cv="past">Passés (1)</button>
+            </div>
+
+            <div class="note">Chaque ligne = numéro · date · titre géant · style · flèche. Hover = la ligne s'ouvre légèrement. Très « programme de festival ».</div>
+
+            <div class="index-list cview cview-up">
+              <div class="index-row">
+                <span class="idx">01</span>
+                <span class="dt">21.06.2026</span>
+                <span class="nm">Fête de la Musique</span>
+                <span class="st">Roots · Dub — Riponne, Lausanne</span>
+                <span class="ar">→</span>
+              </div>
+              <div class="index-row">
+                <span class="idx">02</span>
+                <span class="dt">23.08.2026</span>
+                <span class="nm">Summer Session 2026</span>
+                <span class="st">Steppas · Heavy Bass — Lausanne · 15.–</span>
+                <span class="ar">→</span>
+              </div>
+            </div>
+
+            <div class="index-list cview cview-past cpast" style="display:none;">
+              <div class="index-row">
+                <span class="idx">—</span>
+                <span class="dt">10.05.2025</span>
+                <span class="nm">Session Roots — Mai 2025</span>
+                <span class="st">Roots · Dub — Local · + photos</span>
+                <span class="ar">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE DETAIL -->
+    <div class="view detail">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements/fete-de-la-musique-2026</span></div>
+        <div class="frame-body">
+          <div style="padding:46px 40px 10px;border-bottom:1px dashed var(--line);">
+            <div class="back" style="font-size:.72rem;color:var(--gold);">← Programme</div>
+            <div style="display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-top:14px;">
+              <span style="font-family:'Space Mono';color:var(--gold);">01</span>
+              <h1 style="font-family:'Oswald';font-weight:700;font-size:3rem;text-transform:uppercase;margin:0;">Fête de la Musique</h1>
+            </div>
+            <div class="meta" style="margin-top:10px;">21.06.2026 · RIPONNE, LAUSANNE · 18H00 · ENTRÉE LIBRE</div>
+            <div class="tagrow" style="display:flex;gap:8px;margin:18px 0;"><span class="chip">Roots</span><span class="chip">Dub</span><span class="chip">Vinyl Set</span></div>
+          </div>
+          <div class="det-body">
+            <div class="det-main">
+              <div class="note">L'image n'apparaît qu'ici → la liste reste ultra épurée, la page détail offre le contraste visuel.</div>
+              <p>Texte de présentation de la soirée. Le détail assume les visuels : flyer + photos en bas.</p>
+              <div class="gal" style="margin-top:18px;"><div class="ph"><span class="cap">FLYER</span></div><div class="ph"><span class="cap">PHOTO</span></div><div class="ph"><span class="cap">PHOTO</span></div></div>
+            </div>
+            <aside class="det-side">
+              <div class="det-fact"><span class="k">Date</span><span class="v">21 juin 2026</span></div>
+              <div class="det-fact"><span class="k">Lieu</span><span class="v">Riponne</span></div>
+              <div class="det-fact"><span class="k">Line-up</span><div class="lineup"><div class="ar"><span class="b"></span> Selecta A</div><div class="ar"><span class="b"></span> Selecta B</div></div></div>
+              <span class="btn-gold" style="justify-content:center;">Billetterie</span>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION D ============ -->
+  <section class="dir" data-dir="d">
+    <div class="dir-head">
+      <h2 class="dir-title"><span class="num">D</span>Cartes poster</h2>
+      <p class="dir-desc">Chaque event est une carte au format flyer (3:4). Badge date + prix sur l'image. Rangée « à venir », rangée « passés ». Visuel et direct, esprit mur de flyers.</p>
+    </div>
+
+    <!-- PAGE LISTE -->
+    <div class="view page active">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements</span></div>
+        <div class="frame-body">
+          <div class="m-rasta"></div>
+          <div class="m-nav">
+            <div class="m-logo">Loz Town Patrol<span>SOUNDSYSTEM</span></div>
+            <div class="m-menu"><span>Accueil</span><span class="on">Événements</span><span>À propos</span><span>Contact</span></div>
+          </div>
+          <div class="p-head">
+            <h1>Événements</h1>
+            <div class="sub">Toutes nos sessions &amp; soirées</div>
+          </div>
+
+          <div class="section-pad">
+            <div class="note">Carte verticale = format affiche. Date + prix posés en pastille sur l'image, le reste descend sous le visuel.</div>
+            <div class="sec-label"><h2>À venir</h2><span class="ln"></span><span class="ct">02</span></div>
+            <div class="poster-row">
+              <div class="pcard">
+                <div class="top"><div class="ph"><span class="cap">FLYER · 3:4</span></div><span class="badge">21 JUIN</span><span class="price">Libre</span></div>
+                <div class="body">
+                  <h3 class="title-evt" style="font-size:1.25rem;">Fête de la Musique</h3>
+                  <div class="meta">Riponne, Lausanne · 18h00</div>
+                  <div class="chips"><span class="chip">Roots</span><span class="chip">Dub</span></div>
+                  <div class="foot"><span class="meta" style="color:var(--gold);">Détails →</span></div>
+                </div>
+              </div>
+              <div class="pcard">
+                <div class="top"><div class="ph"><span class="cap">FLYER · 3:4</span></div><span class="badge">23 AOÛT</span><span class="price">15.–</span></div>
+                <div class="body">
+                  <h3 class="title-evt" style="font-size:1.25rem;">Summer Session 2026</h3>
+                  <div class="meta">Lausanne · 21h00</div>
+                  <div class="chips"><span class="chip">Steppas</span><span class="chip">Heavy Bass</span></div>
+                  <div class="foot"><span class="meta" style="color:var(--gold);">Détails →</span></div>
+                </div>
+              </div>
+              <div class="pcard" style="border-style:dashed;opacity:.5;align-items:center;justify-content:center;">
+                <div class="body" style="align-items:center;justify-content:center;text-align:center;"><div class="meta">+ d'autres dates bientôt</div></div>
+              </div>
+            </div>
+
+            <div class="note">Passés : mêmes cartes, atténuées, badge « archive » — le visuel sound-system continue de vivre.</div>
+            <div class="sec-label" style="margin-top:42px;"><h2>Passés</h2><span class="ln"></span><span class="ct">archive</span></div>
+            <div class="poster-row past">
+              <div class="pcard">
+                <div class="top"><div class="ph"><span class="cap">PHOTO SOUND SYSTEM</span></div><span class="badge">10 MAI 2025</span></div>
+                <div class="body">
+                  <h3 class="title-evt" style="font-size:1.25rem;">Session Roots — Mai 2025</h3>
+                  <div class="meta">Local · 21h00</div>
+                  <div class="chips"><span class="chip">Roots</span><span class="chip">+ photos</span></div>
+                  <div class="foot"><span class="meta" style="color:var(--gold);">Revoir →</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE DETAIL -->
+    <div class="view detail">
+      <div class="frame">
+        <div class="frame-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="url">loztownpatrol.ch/evenements/summer-session-2026</span></div>
+        <div class="frame-body">
+          <div class="det-hero" style="height:300px;">
+            <div class="ph"><span class="cap">FLYER / VISUEL · bandeau</span></div>
+            <div class="scrim"></div>
+            <div class="cap-wrap">
+              <div class="back">← Tous les événements</div>
+              <h1>Summer Session 2026</h1>
+              <div class="meta">23 AOÛT 2026 · LAUSANNE · 21H00 · 15.–</div>
+            </div>
+          </div>
+          <div class="det-body">
+            <div class="det-main">
+              <div class="note">On garde le bandeau visuel en haut (cohérent avec la carte poster), infos en colonne à droite.</div>
+              <div class="tagrow" style="display:flex;gap:8px;margin-bottom:16px;"><span class="chip">Steppas</span><span class="chip">Heavy Bass</span><span class="chip">Sound System</span></div>
+              <p>Présentation de la session : line-up, sound system, infos pratiques, bonne vibes.</p>
+              <div class="gal" style="margin-top:18px;"><div class="ph"><span class="cap">PHOTO</span></div><div class="ph"><span class="cap">PHOTO</span></div><div class="ph"><span class="cap">PHOTO</span></div></div>
+            </div>
+            <aside class="det-side">
+              <div class="det-fact"><span class="k">Date</span><span class="v">23 août 2026</span></div>
+              <div class="det-fact"><span class="k">Lieu</span><span class="v">Lausanne</span></div>
+              <div class="det-fact"><span class="k">Entrée</span><span class="v">15.–</span></div>
+              <div class="det-fact"><span class="k">Line-up</span><div class="lineup"><div class="ar"><span class="b"></span> Selecta A</div><div class="ar"><span class="b"></span> Selecta B</div><div class="ar"><span class="b"></span> MC</div></div></div>
+              <span class="btn-gold" style="justify-content:center;">Billetterie</span>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <div class="it"><span class="sw" style="background:repeating-linear-gradient(135deg,#1c1c1e 0 6px,#161618 6px 12px);border:1px solid var(--line);"></span> Emplacement image (flyer / photo)</div>
+    <div class="it"><span class="sw" style="background:var(--gold);"></span> Action principale</div>
+    <div class="it"><span class="sw" style="background:transparent;border:1px solid var(--gold);"></span> Annotation</div>
+    <div class="it" style="font-family:'Caveat';font-size:1.05rem;color:var(--muted);">Wireframe — formes &amp; structure, pas le rendu final.</div>
+  </div>
+
+</div>
+
+<script>
+  // direction tabs
+  const tabs=document.getElementById('tabs');
+  tabs.addEventListener('click',e=>{
+    const b=e.target.closest('.tab'); if(!b)return;
+    const dir=b.dataset.dir;
+    tabs.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));
+    document.querySelectorAll('.dir').forEach(d=>d.classList.toggle('active',d.dataset.dir===dir));
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  // page / detail view
+  const viewseg=document.getElementById('viewseg');
+  viewseg.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    const v=b.dataset.view;
+    viewseg.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+    document.querySelectorAll('.view').forEach(view=>{
+      view.classList.toggle('active', view.classList.contains(v));
+    });
+  });
+
+  // annotations toggle
+  document.getElementById('noteToggle').addEventListener('click',()=>{
+    document.body.classList.toggle('notes-on');
+  });
+
+  // direction C up/past toggle
+  const ct=document.getElementById('ctoggle');
+  ct.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    const v=b.dataset.cv;
+    ct.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
+    document.querySelector('.cview-up').style.display = v==='up'?'block':'none';
+    document.querySelector('.cview-past').style.display = v==='past'?'block':'none';
+  });
+</script>
+</body>
+</html>
