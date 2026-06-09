@@ -1,13 +1,22 @@
 ---
-titre: Session Roots — Mai 2025
-date: 2025-05-10
+titre: DUB PON DI LAKE 2
+date: 2026-04-18
 lieu: Local
-heure: 21h00
-image_principale: /uploads/img_4963-scaled.jpeg
-photos:
-  - /uploads/img_4963-scaled.jpeg
-  - /uploads/img_4963-scaled.jpeg
+heure: 12H - 00H
+prix: Free
+genres:
+  - Roots
+  - Digitale
+artistes:
+  - Loztown Patrol
+  - Wann Sound
+  - T-Bredda
+  - Wadding Birds
+image_principale: /uploads/capture-d’écran-2026-06-09-à-15.34.15.png
+photos: []
 videos_youtube: []
 publie: true
 ---
-Soirée roots & dub au D! Club. Heavy bass, vinyl set, bonne vibes.
+Plongez au cœur des vibrations Dub, Roots et Digital avec DUB PON DI LAKE. Organisé dans le cadre idyllique du Minimum Bar à Lausanne, cet événement a marqué les esprits par une "Dub Coalition Edition" exceptionnelle, réunissant les forces vives de la scène locale.
+
+De midi à minuit, la puissance des sound systems a fait vibrer les rives du lac grâce à une sélection pointue.
