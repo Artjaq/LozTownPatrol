@@ -103,4 +103,4 @@ public/                  # ancienne version Firebase (héritage, non buildée)
 
 ---
 
-Auteur : Artjaq — Licence : [à compléter]
+Auteur : Artjaq 
