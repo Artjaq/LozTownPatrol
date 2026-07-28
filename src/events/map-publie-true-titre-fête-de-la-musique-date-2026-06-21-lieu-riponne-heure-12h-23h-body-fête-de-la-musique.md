@@ -1,5 +1,5 @@
 ---
-titre: Fête de la musique
+titre: Fête de la musique 2026
 date: 2026-06-21
 lieu: Riponne
 heure: 12h - 23h
