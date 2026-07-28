@@ -1259,6 +1259,17 @@ a:focus-visible, button:focus-visible, .btn:focus-visible{
 /* Modificateur : cartes passées atténuées */
 .poster-row--past .pcard { opacity: .66; }
 
+/* -- Soirées passées (accueil) -- */
+.events-past-home {
+  padding: 4rem 0 2rem;
+}
+
+/* Lien "Voir tous les événements" sous la grille */
+.events-past-more {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 /* Responsive poster-row */
 @media (max-width: 900px) {
   .poster-row { grid-template-columns: repeat(2, 1fr); }

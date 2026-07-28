@@ -72,6 +72,52 @@ page_active: accueil
     </div>
 </section>
 
+<section class="events-past-home">
+  <div class="container">
+    <h2 class="section-title">Soirées passées</h2>
+
+    {% if collections.evenements_passes.length %}
+    <div class="poster-row poster-row--past">
+      {% for evenement in collections.evenements_passes | limit(6) %}
+      <article class="pcard">
+        <div class="pcard-top">
+          {% if evenement.data.image_principale %}
+          <img src="{{ evenement.data.image_principale }}" alt="{{ evenement.data.titre }}" loading="lazy">
+          {% else %}
+          <div class="event-media-placeholder"></div>
+          {% endif %}
+          <span class="pcard-badge">{{ evenement.data.date | dateJourMois }}</span>
+        </div>
+        <div class="pcard-body">
+          <h3 class="pcard-title">{{ evenement.data.titre }}</h3>
+          <p class="pcard-meta">
+            {{ evenement.data.lieu }}{% if evenement.data.heure %} · {{ evenement.data.heure }}{% endif %}
+          </p>
+          {% if evenement.data.genres and evenement.data.genres.length %}
+          <div class="pcard-chips">
+            {% for genre in evenement.data.genres %}
+            <span class="chip">{{ genre }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <a class="pcard-link" href="/events/{{ evenement.page.fileSlug }}/" aria-label="Voir {{ evenement.data.titre }}">Détails →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    {% if collections.evenements_passes.length > 6 %}
+    <div class="events-past-more">
+      <a href="/events/" class="btn btn-ghost">Voir tous les événements</a>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <p class="muted">Aucune soirée passée pour le moment.</p>
+    {% endif %}
+  </div>
+</section>
+
 <section class="slider-wrap slider-designed">
   <div class="container">
     <h2 class="section-title">Nos soirées en images</h2>
